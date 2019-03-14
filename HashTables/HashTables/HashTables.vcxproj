@@ -118,9 +118,8 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="LL_Iterator.h" />
-    <ClInclude Include="LL_Node.h" />
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="HashNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

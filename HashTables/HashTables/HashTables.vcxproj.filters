@@ -20,13 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h">
+    <ClInclude Include="HashTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LL_Iterator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LL_Node.h">
+    <ClInclude Include="HashNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
