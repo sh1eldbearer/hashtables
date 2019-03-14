@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 
 #include "HashNode.h"
 
@@ -10,6 +11,7 @@ template <typename T> class HashTable
 {
 private:
 	int tableSize = 0;
+	std::vector<std::list<HashNode<T>*>> table;
 
 	// Hashing function.
 	int Hash(std::string key)
@@ -22,14 +24,12 @@ private:
 		return intKey % tableSize;
 	}
 public:
-	std::vector<std::vector<HashNode<T>*>> table;
-
 	// Default constructor.
 	HashTable(int size) : tableSize(size)
 	{
 		for (int count = 0; count < size; count++)
 		{
-			std::vector<HashNode<T>*> newBucket;
+			std::list<HashNode<T>*> newBucket;
 			table.push_back(newBucket);
 		}
 	}
@@ -46,7 +46,37 @@ public:
 
 	T Retrieve(std::string keyToFind)
 	{
+		int hashedValue = Hash(keyToFind);
+		std::list<HashNode<T>*> bucket = table[hashedValue];
+		typename std::list<HashNode<T>*>::iterator myIter = bucket.begin();
 
+		for (myIter = bucket.begin(); myIter != bucket.end(); myIter++)
+		{
+			if ((*myIter)->GetKey() == keyToFind)
+			{
+				return (*myIter)->GetValue();
+			}
+		}
+
+		return -1;
+	}
+
+	void PrintTable()
+	{
+		for (int bucketNumber = 0; bucketNumber < tableSize; bucketNumber++)
+		{
+			std::cout << "Hash " << bucketNumber<< ": ";
+
+			std::list<HashNode<T>*> bucket = table[bucketNumber];
+			typename std::list<HashNode<T>*>::iterator myIter = bucket.begin();
+
+			for (myIter = bucket.begin(); myIter != bucket.end(); myIter++)
+			{
+				std::cout << (*myIter)->GetValue();
+				std::cout << " -> ";
+			}
+			std::cout << "\n";
+		}
 	}
 };
 
